@@ -19,9 +19,9 @@ for move in move_list.movelist:
 
 storage2 = Storage("day5crates")
 crane9001 = Crane(storage2, "9001")
-move_list9001 = MovePlan("day5moves")
+move_list2 = MovePlan("day5moves")
 
-for move in move_list9001.movelist:
+for move in move_list2.movelist:
     amount = int(move[0])
     fromwhere = int(move[1]) - 1
     towhere = int(move[2]) - 1
