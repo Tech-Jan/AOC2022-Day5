@@ -7,24 +7,27 @@ class Crane:
         self.storage = storage
         self.move_box = []
 
+
     def movebox(self, amount_boxes, storage_from, storage_to):
         self.move_box = []
         for i in range(amount_boxes):
             self.pickup(storage_from)
-        for i in range(amount_boxes):
+        for i in range(len(self.move_box)):
             self.drop(storage_to)
 
     def pickup9000(self, storage_from):
         x = storage_from
         y = self.storage.topbox(x)
-        self.move_box.append(self.storage.shelf[-y][x])
-        self.storage.shelf[-y][x] = " "
+        if y > self.storage.floorlevel:
+            self.move_box.append(self.storage.shelf[-y][x])
+            self.storage.shelf[-y][x] = " "
 
     def pickup9001(self, storage_from):
         x = storage_from
         y = self.storage.topbox(x)
-        self.move_box.append(self.storage.shelf[-y][x])
-        self.storage.shelf[-y][x] = " "
+        if y > self.storage.floorlevel:
+            self.move_box.append(self.storage.shelf[-y][x])
+            self.storage.shelf[-y][x] = " "
 
     def pickup(self, storage_from):
         self.storage.isspace()

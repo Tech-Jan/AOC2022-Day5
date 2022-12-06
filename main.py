@@ -1,34 +1,48 @@
 from dataclass import Storage, MovePlan
 from Crane import Crane
-from pprint import pprint
+import pprint
 import time
+import os
+import random
 
-storage = Storage("day5crates")
-storage2 = Storage("day5crates")
-move_list = MovePlan("day5moves")
+storage = Storage("/home/jew/PycharmProjects/day5 OOP/extendedcrates")
+move_list = MovePlan("/home/jew/PycharmProjects/day5 OOP/day5moves")
 crane9000 = Crane(storage, "9000")
+pp = pprint.PrettyPrinter(width = 250)
 
-for move in move_list.movelist:
+pp.pprint(storage.shelf)
+
+#############this turns the list into a random lsit where the moves fit the storage width
+mylist = move_list.datamovelistcreator(storage)
+#print(mylist)
+storage.floorlevel=5
+
+for move in mylist:
     amount = int(move[0])
     fromwhere = int(move[1]) - 1
     towhere = int(move[2]) - 1
     crane9000.movebox(amount, fromwhere, towhere)
-    pprint(storage.shelf)
-    print("!##############################################!")
-    time.sleep(0.5)
+    pp.pprint(storage.shelf)
+    print("!###############################################################################################!")
+    time.sleep(0.08)
+    os.system('clear')
 
-storage2 = Storage("day5crates")
+
+storage2 = Storage("/home/jew/PycharmProjects/day5 OOP/day5crates")
 crane9001 = Crane(storage2, "9001")
-move_list2 = MovePlan("day5moves")
+move_list2 = MovePlan("/home/jew/PycharmProjects/day5 OOP/day5moves")
+move_list23 = move_list.datamovelistcreator(storage2)
 
 for move in move_list2.movelist:
+#for move in move_list23:
     amount = int(move[0])
     fromwhere = int(move[1]) - 1
     towhere = int(move[2]) - 1
     crane9001.movebox(amount, fromwhere, towhere)
-    pprint(storage2.shelf)
+    pp.pprint(storage2.shelf)
     print("!##############################################!")
-    time.sleep(0.5)
+    time.sleep(0.08)
+    os.system('clear')
 
-# pprint(storage2.shelf)
+pp.pprint(storage2.shelf)
 # print(crane9001.move_box)
