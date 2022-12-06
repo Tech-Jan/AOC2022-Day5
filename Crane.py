@@ -57,7 +57,7 @@ class Crane:
                 x += 1
                 y = self.storage.topbox(x) + 1
             else:
-                x += random.choice((-1,1))
+                x += random.choice((-1, 1))
                 y = self.storage.topbox(x) + 1
         self.storage.shelf[-y][x] = self.move_box[0]
         del self.move_box[0]

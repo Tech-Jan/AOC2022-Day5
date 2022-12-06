@@ -1,4 +1,6 @@
 import random
+
+
 class Storage:
     def __init__(self, rawdata):
         self.rawlist = rawdata
@@ -16,14 +18,12 @@ class Storage:
 
     def createemptyrow(self):
         width = 0
-        myliststring=[]
+        myliststring = []
         foo = " "
         while width < len(self.shelf[0]):
-            test=len(self.shelf[0])
             myliststring += foo
             width = len(myliststring)
         return myliststring
-
 
     def shelf_creator(self):
 
@@ -41,7 +41,7 @@ class Storage:
         return biglist
 
     def addstore(self):
-        #store = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        # store = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         store = self.createemptyrow()
         self.shelf.insert(0, store)
 
@@ -53,7 +53,6 @@ class Storage:
         height = 0
         found = False
         while not found and i >= 0:
-            test=x
             current_crate = self.shelf[i][x]
             if current_crate == " ":
                 found = True
@@ -74,7 +73,6 @@ class MovePlan:
         self.rawdata = rawdata
         self.movelist = self.datatranslator()
 
-
     def datatranslator(self):
         f = open(self.rawdata, "r").read()
         crates_raw_data = f.split("\n")
@@ -92,16 +90,14 @@ class MovePlan:
             output.append(abc)
         return output
 
-    def datamovelistcreator(self, storage):
+    @staticmethod
+    def datamovelistcreator(storage):
         mylist = []
         width = int(len(storage.shelf[0]))
-        maxheightstart = 0
-        #for x in range(width):
-        #    if maxheightstart < storage.topbox(x):
         maxheightstart = storage.topbox(6)
         print(maxheightstart)
         for i in range(5000):
-            X1 = int(random.triangular(1, maxheightstart, 2))
-            myrow = [random.randint(1, X1), random.randint(1, width), random.randint(1, width)]
+            x1 = int(random.triangular(1, maxheightstart, 2))
+            myrow = [random.randint(1, x1), random.randint(1, width), random.randint(1, width)]
             mylist.append(myrow)
         return mylist
