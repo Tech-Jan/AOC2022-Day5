@@ -46,6 +46,21 @@ class Crane:
             self.drop9001(storage_to)
 
     def drop9000(self, storage_to):
+        coordinates = self.checkiffull(storage_to)
+        x = coordinates[0]
+        y = coordinates[1]
+        self.storage.shelf[-y][x] = self.move_box[0]
+        del self.move_box[0]
+
+    def drop9001(self, storage_to):
+        coordinates = self.checkiffull(storage_to)
+        x = coordinates[0]
+        y = coordinates[1]
+        self.storage.shelf[-y][x] = self.move_box[-1]
+        del self.move_box[-1]
+
+    def checkiffull(self, storage_to):
+        coordinates = []
         x = storage_to
         # +1 because you want to drop the box on top of the topbox
         y = self.storage.topbox(x) + 1
@@ -59,12 +74,6 @@ class Crane:
             else:
                 x += random.choice((-1, 1))
                 y = self.storage.topbox(x) + 1
-        self.storage.shelf[-y][x] = self.move_box[0]
-        del self.move_box[0]
-
-    def drop9001(self, storage_to):
-        x = storage_to
-        # +1 because you want to drop the box on top of the topbox
-        y = self.storage.topbox(x) + 1
-        self.storage.shelf[-y][x] = self.move_box[-1]
-        del self.move_box[-1]
+        coordinates.append(x)
+        coordinates.append(y)
+        return list(coordinates)
