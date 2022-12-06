@@ -19,9 +19,9 @@ class Storage:
     def createemptyrow(self):
         width = 0
         myliststring = []
-        foo = " "
+        space = " "
         while width < len(self.shelf[0]):
-            myliststring += foo
+            myliststring += space
             width = len(myliststring)
         return myliststring
 
