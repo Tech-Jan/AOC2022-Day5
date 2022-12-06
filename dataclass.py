@@ -6,6 +6,8 @@ class Storage:
         self.list = self.datatranslator()
         self.shelf = self.shelf_creator()
         self.floorlevel = 1
+        self.storeheight = 50
+        self.width = int(len(self.shelf[0]))
 
     def datatranslator(self):
         f = open(self.rawlist, "r").read()
@@ -51,6 +53,7 @@ class Storage:
         height = 0
         found = False
         while not found and i >= 0:
+            test=x
             current_crate = self.shelf[i][x]
             if current_crate == " ":
                 found = True

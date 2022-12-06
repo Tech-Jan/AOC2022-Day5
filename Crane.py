@@ -1,3 +1,6 @@
+import random
+
+
 class Crane:
     """big crane. 2models availabe model '9001' and '9000'
     please enter in which storage this crane is working"""
@@ -6,7 +9,6 @@ class Crane:
         self.model = model
         self.storage = storage
         self.move_box = []
-
 
     def movebox(self, amount_boxes, storage_from, storage_to):
         self.move_box = []
@@ -47,6 +49,16 @@ class Crane:
         x = storage_to
         # +1 because you want to drop the box on top of the topbox
         y = self.storage.topbox(x) + 1
+        while y > self.storage.storeheight:
+            if x == self.storage.width-1:
+                x -= 1
+                y = self.storage.topbox(x) + 1
+            elif x == 0:
+                x += 1
+                y = self.storage.topbox(x) + 1
+            else:
+                x += random.choice((-1,1))
+                y = self.storage.topbox(x) + 1
         self.storage.shelf[-y][x] = self.move_box[0]
         del self.move_box[0]
 
